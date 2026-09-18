@@ -1,0 +1,25 @@
+name: unit-tests
+
+on:
+  pull_request:
+  push:
+    branches: [develop, main]
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+      # Диагностика для этапа 6: в PR из форка здесь не должно быть секретов.
+      - name: Environment
+        run: env | sort
+      - name: Unit tests
+        run: python -m unittest discover -s tests/unit -t . -v
