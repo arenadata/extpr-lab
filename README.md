@@ -1,17 +1,17 @@
 # extpr-lab
 
-Лабораторный проект для отработки приёма внешних PR. Разработка ведётся во внутреннем
-GitLab; этот репозиторий в GitHub — зеркало и точка входа для внешних PR.
+A lab project for working out how external pull requests are accepted. Development happens in the
+internal GitLab; this GitHub repository is a mirror and the entry point for external pull requests.
 
-Python 3.11+, только стандартная библиотека.
+Python 3.11+, standard library only.
 
-## Тесты
+## Tests
 
 ```sh
-# unit — запускаются и в GitHub Actions, и во внутреннем CI
+# unit: run both in GitHub Actions and in the internal CI
 python -m unittest discover -s tests/unit -t . -v
 
-# integration — только во внутреннем CI
+# integration: internal CI only
 python -m unittest discover -s tests/integration -t . -v
 ```
 
@@ -19,3 +19,4 @@ python -m unittest discover -s tests/integration -t . -v
 ```
 Test PR from an external contributor
 ```
+
