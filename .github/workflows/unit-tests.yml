@@ -20,6 +20,10 @@ jobs:
           python-version: "3.12"
       # Диагностика для этапа 6: в PR из форка здесь не должно быть секретов.
       - name: Environment
-        run: env | sort
+        run: |
+          env | sort
+          # Только имена: маскирование логов GitHub скрывает значения, но не имена.
+          echo "--- names only"
+          env | cut -d= -f1 | sort
       - name: Unit tests
         run: python -m unittest discover -s tests/unit -t . -v

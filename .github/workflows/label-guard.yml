@@ -1,0 +1,31 @@
+name: label-guard
+
+# Новый push в PR отзывает одобрение: метка ok-to-test снимается.
+# pull_request_target даёт токен с правом записи, поэтому здесь НЕТ checkout
+# и не исполняется ничего из PR — только вызовы API.
+on:
+  pull_request_target:
+    types: [synchronize]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  revoke-approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove ok-to-test
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          LABEL: ok-to-test
+        run: |
+          if gh api "repos/$REPO/issues/$PR/labels" --jq '.[].name' | grep -qx "$LABEL"; then
+            gh api -X DELETE "repos/$REPO/issues/$PR/labels/$LABEL" > /dev/null
+            gh api "repos/$REPO/issues/$PR/comments" \
+              -f body="New commits were pushed, so the \`$LABEL\` approval has been revoked. A maintainer needs to review the new revision and apply the label again." > /dev/null
+            echo "Label $LABEL removed from PR #$PR"
+          else
+            echo "PR #$PR has no $LABEL label, nothing to do"
+          fi
