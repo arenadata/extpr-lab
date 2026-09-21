@@ -1,8 +1,8 @@
 name: label-guard
 
-# Новый push в PR отзывает одобрение: метка ok-to-test снимается.
-# pull_request_target даёт токен с правом записи, поэтому здесь НЕТ checkout
-# и не исполняется ничего из PR — только вызовы API.
+# A new push to a pull request revokes the approval: the ok-to-test label is removed.
+# pull_request_target provides a token with write access, so there is NO checkout here
+# and nothing from the pull request is executed: API calls only.
 on:
   pull_request_target:
     types: [synchronize]

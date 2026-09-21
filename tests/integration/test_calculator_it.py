@@ -1,4 +1,4 @@
-"""«Внутренние» тесты: запускаются только в GitLab, в GitHub Actions не вызываются."""
+"""Internal tests: run only in GitLab, never in GitHub Actions."""
 
 import unittest
 
