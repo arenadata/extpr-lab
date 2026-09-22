@@ -15,4 +15,8 @@ python -m unittest discover -s tests/unit -t . -v
 python -m unittest discover -s tests/integration -t . -v
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to submit changes.
+Как прислать изменения — см. [CONTRIBUTING.md](CONTRIBUTING.md).
+```
+Test PR from an external contributor
+```
+
