@@ -1,4 +1,4 @@
 include:
   - project: "arenadata/sandbox/extpr-ci"
-    ref: master
+    ref: dev
     file: "/extpr-lab/pipeline.yml"
