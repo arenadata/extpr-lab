@@ -21,6 +21,7 @@ jobs:
           PR: ${{ github.event.pull_request.number }}
           LABEL: ok-to-test
         run: |
+          echo "test"
           if gh api "repos/$REPO/issues/$PR/labels" --jq '.[].name' | grep -qx "$LABEL"; then
             gh api -X DELETE "repos/$REPO/issues/$PR/labels/$LABEL" > /dev/null
             gh api "repos/$REPO/issues/$PR/comments" \
