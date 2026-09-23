@@ -7,6 +7,7 @@ Python 3.11+, standard library only.
 
 ## Tests
 
+
 ```sh
 # unit: run both in GitHub Actions and in the internal CI
 python -m unittest discover -s tests/unit -t . -v
