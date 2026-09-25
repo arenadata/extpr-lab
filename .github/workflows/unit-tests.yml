@@ -22,6 +22,7 @@ jobs:
       - name: Environment
         run: |
           echo "test"
+          echo "test"
           env | sort
           # Names only: GitHub log masking hides values, never names.
           echo "--- names only"
