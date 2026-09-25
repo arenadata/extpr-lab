@@ -21,6 +21,8 @@ jobs:
       # Diagnostics: a pull request from a fork must not see any secrets here.
       - name: Environment
         run: |
+          echo "test"
+          echo "test"
           env | sort
           # Names only: GitHub log masking hides values, never names.
           echo "--- names only"
